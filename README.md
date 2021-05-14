@@ -1,6 +1,6 @@
 # TODO
 
-Please do not fork the repo, clone it instead.
+Please do not fork the repo, clone it and put it in your own github / save it locally.
 
 Definition of done:
 
@@ -15,6 +15,8 @@ Definition of done:
 9. List does not have performance issues when selecting/deselecting/scrolling cards.
 
 Doing this task in typescript is welcome. However if you do not feel comfortable with typescript, please change file extension to js.
+Decide by yourself if you want to install additional dependancies, or code some functionality manually.
+All design choices are yours. Please have UX in mind when making decisions.
 
 Optional: Add functional / unit tests with testing library of your choice.
 
