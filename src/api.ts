@@ -3,7 +3,7 @@ import mockData from "./mockData.json";
 let cursor = -1;
 const size = 10;
 
-function delay(time: number) {
+function delay(time: number): Promise<void> {
   return new Promise((resolve) => setTimeout(() => resolve(), time));
 }
 
