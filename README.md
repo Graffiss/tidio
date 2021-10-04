@@ -4,7 +4,7 @@ Please do not fork the repo, clone it and put it in your own github / save it lo
 
 Definition of done:
 
-1. Fetch contacts using `apiData` function. Contacts are paginated (50 items in batch).
+1. Fetch contacts using `apiData` function. Contacts are paginated (10 items in batch).
 2. "Load more" button is positioned at the bottom of the list. It fetches next batch and appends it to the existing list.
 3. Loading state is handled, display some kind of spinner / loader.
 4. Error state is handled. It allows to refetch failed batch.
