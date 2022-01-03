@@ -14,10 +14,12 @@ Definition of done:
 8. Selected contacts are displayed at the top of the list.
 9. List does not have performance issues when selecting/deselecting/scrolling cards.
 
-Doing this task in typescript is preferred. However if you do not feel comfortable with typescript, please change file extension to js.
+Doing this task in typescript is preferred. However, if you do not feel comfortable with typescript, please change file extension to js.
 
-Decide by yourself if you want to install additional dependancies, or code some functionality manually.
-All design choices are yours. Please have UX in mind when making decisions.
+Decide by yourself if you want to install additional dependencies, or code some functionality manually.
+Design choices are yours, but please stick to provided layout pattern. Please have UX in mind when making decisions.
+
+![layout.png](layout.png)
 
 Optional: Add functional / unit tests with testing library of your choice.
 
