@@ -1,15 +1,18 @@
-import React from "react";
+export interface PersonInfoType {
+  id: string;
+  firstNameLastName: string;
+  jobTitle: string;
+  emailAddress: string;
+}
 
-type Props = {
-  data: {
-    firstNameLastName: string;
-    jobTitle: string;
-    emailAddress: string;
-  };
+export type Props = {
+  data: PersonInfoType;
+  onClick: () => void;
+  className?: string;
 };
 
 function PersonInfo(props: Props) {
-  const { data } = props;
+  const { data, onClick, className } = props;
   return (
     <div
       style={{
@@ -22,8 +25,10 @@ function PersonInfo(props: Props) {
         margin: "10px 0",
         background: "#fff",
         cursor: "pointer",
+        width: "350px",
       }}
-      className="person-info"
+      className={`person-info ${className && className}`}
+      onClick={onClick}
     >
       <div className="firstNameLastName">{data.firstNameLastName}</div>
       <div className="jobTitle">{data.jobTitle}</div>

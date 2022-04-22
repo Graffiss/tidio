@@ -14,8 +14,9 @@ code {
 .App {
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: space-between;
+  align-items: center;
   margin: 20px 0;
 }
 
@@ -31,11 +32,21 @@ code {
   border: 2px solid pink;
 }
 
+.highlight {
+  border: 2px solid red;
+}
+
+.error {
+  color: red;
+  margin: 20px 0;
+}
+
 .firstNameLastName {
   padding: 0 0 10px;
   color: #333333;
   font-size: 26px;
   font-weight: 700;
+  word-wrap: break-word;
 }
 
 .jobTitle {
@@ -49,4 +60,13 @@ code {
   color: #666666;
   font-size: 14px;
   line-height: 1.8em;
+}
+
+button {
+  padding: 20px 30px;
+  background-color: #333333;
+  color: beige;
+  border-radius: 5px;
+  border: 1px solid beige;
+  cursor: pointer;
 }
