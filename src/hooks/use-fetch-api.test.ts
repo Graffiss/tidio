@@ -13,42 +13,54 @@ afterEach(() => {
   jest.spyOn(api, "default").mockRestore();
 });
 
-test("hook make request when fetchData method call", async () => {
-  const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
+describe("useFetchAPI hook", () => {
+  test("hook make fetch request when rendered initially to DOM", async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
 
-  expect(result.current.loading).toBe(false);
-  expect(result.current.data).toEqual([]);
+    expect(result.current.loading).toBe(true);
+    expect(result.current.data).toEqual([]);
 
-  result.current.fetchData();
+    await waitForNextUpdate();
 
-  expect(result.current.loading).toBe(true);
+    expect(result.current.loading).toBe(false);
+    expect(result.current.data).toEqual(data);
+  });
 
-  await waitForNextUpdate();
+  test("hook make request for additional data when loadMoreData method has been called", async () => {
+    const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
 
-  expect(result.current.loading).toBe(false);
-  expect(result.current.data).toEqual(data);
-});
+    expect(result.current.loading).toBe(true);
+    expect(result.current.data).toEqual([]);
 
-test("hook make request for additional data when loadMoreData method call", async () => {
-  const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
+    await waitForNextUpdate();
 
-  expect(result.current.loading).toBe(false);
-  expect(result.current.data).toEqual([]);
+    expect(result.current.loading).toBe(false);
 
-  result.current.fetchData();
+    result.current.loadMoreData();
 
-  expect(result.current.loading).toBe(true);
+    expect(result.current.loading).toBe(true);
 
-  await waitForNextUpdate();
+    await waitForNextUpdate();
 
-  expect(result.current.loading).toBe(false);
+    expect(result.current.loading).toBe(false);
+    expect(result.current.data).toEqual([...data, ...data]);
+  });
 
-  result.current.loadMoreData();
+  test("hook returns error value when something went wrong", async () => {
+    jest
+      .spyOn(api, "default")
+      .mockRejectedValueOnce(new Error("Something went wrong"));
 
-  expect(result.current.loading).toBe(true);
+    const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
 
-  await waitForNextUpdate();
+    expect(result.current.loading).toBe(true);
+    expect(result.current.data).toEqual([]);
+    expect(result.current.error).toBe("");
 
-  expect(result.current.loading).toBe(false);
-  expect(result.current.data).toEqual([...data, ...data]);
+    await waitForNextUpdate();
+
+    expect(result.current.loading).toBe(false);
+    expect(result.current.data).toEqual([]);
+    expect(result.current.error).toBe("Something went wrong");
+  });
 });

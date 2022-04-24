@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import * as api from "./api";
 import mockData from "./mockData.json";
 import useFetchAPI from "./hooks/use-fetch-api";
@@ -29,9 +29,7 @@ describe("Loading state", () => {
 
   test("after initial data fetch call", async () => {
     render(<App />);
-    const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
-
-    result.current.fetchData();
+    const { waitForNextUpdate } = renderHook(() => useFetchAPI());
 
     await waitForNextUpdate();
 
@@ -45,14 +43,12 @@ describe("Loading state", () => {
 });
 
 describe("Error state", () => {
-  test("after initial data fetch call with error", async () => {
+  test("after fetch call with an error", async () => {
     jest
       .spyOn(api, "default")
       .mockRejectedValueOnce(new Error("Something went wrong"));
     render(<App />);
-    const { result, waitForNextUpdate } = renderHook(() => useFetchAPI());
-
-    result.current.fetchData();
+    const { waitForNextUpdate } = renderHook(() => useFetchAPI());
 
     await waitForNextUpdate();
 
@@ -64,5 +60,22 @@ describe("Error state", () => {
 
     expect(somethingWentWrongText).toBeInTheDocument();
     expect(somethingWentWrongText).toHaveTextContent("Something went wrong");
+  });
+});
+
+describe("Addind cards to Selected array", () => {
+  test("togglePersonCard function works properly", async () => {
+    render(<App />);
+    const { waitForNextUpdate } = renderHook(() => useFetchAPI());
+
+    await waitForNextUpdate();
+
+    const personInfo = screen.getByTestId("person-info");
+    const selected = screen.getByText(/selected contacts/i);
+
+    expect(selected).toHaveTextContent("Selected contacts: 0");
+
+    fireEvent.click(personInfo);
+    expect(selected).toHaveTextContent("Selected contacts: 1");
   });
 });

@@ -27,18 +27,14 @@ code {
   margin: 10px 20px 0 0;
 }
 
+.person-info {
+  padding: 30px;
+  border: 2px solid white;
+}
+
 .person-info:hover {
   padding: 30px;
   border: 2px solid pink;
-}
-
-.highlight {
-  border: 2px solid red;
-}
-
-.error {
-  color: red;
-  margin: 20px 0;
 }
 
 .firstNameLastName {
@@ -60,6 +56,15 @@ code {
   color: #666666;
   font-size: 14px;
   line-height: 1.8em;
+}
+
+.highlight {
+  border: 2px solid red;
+}
+
+.error {
+  color: red;
+  margin: 20px 0;
 }
 
 button {

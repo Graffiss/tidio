@@ -27,8 +27,9 @@ function PersonInfo(props: Props) {
         cursor: "pointer",
         width: "350px",
       }}
-      className={`person-info ${className && className}`}
+      className={`person-info ${className}`}
       onClick={onClick}
+      data-testid="person-info"
     >
       <div className="firstNameLastName">{data.firstNameLastName}</div>
       <div className="jobTitle">{data.jobTitle}</div>
